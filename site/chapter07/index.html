@@ -1,0 +1,2209 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="씨마스 2022 개정 정보 교과서 2단원(데이터)과 완전 연계한 실습 가이드입니다. 압축·암호화 개념 이해부터 오렌지3를 활용한 빅데이터 수집·전처리·시각화, 구글 도구를 활용한 과제 제출까지 8차시에 걸쳐 단계적으로 경험합니다.">
+      
+      
+        <meta name="author" content="Created with EduFlow">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Chapter 07. 데이터를 그림으로 ① - 기본 차트 마스터 - 정보 2단원 데이터</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans KR";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-07-1-" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href=".." title="정보 2단원 데이터" class="md-header__button md-logo" aria-label="정보 2단원 데이터" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            정보 2단원 데이터
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 07. 데이터를 그림으로 ① - 기본 차트 마스터
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="다크 모드로 전환"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드로 전환" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="라이트 모드로 전환"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드로 전환" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../1-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 1 - Part 1. 데이터를 지켜라 — 압축과 암호화
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../2-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 2 - Part 2. 빅데이터란 무엇인가 — 수집과 준비
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../3-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 3 - Part 3. 데이터를 다듬어라 — 빅데이터 전처리
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../4-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 4 - Part 4. 데이터를 눈에 보이게 — 빅데이터 시각화
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../5-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 5 - Part 5. 이미지와 텍스트도 데이터다 — 비정형 데이터 시각화
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../6-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 6 - Part 6. 데이터로 문제를 해결하라 — 협력적 창의·융합 프로젝트
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../7-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 7 - Part 7. 나의 데이터 이야기를 완성하라 — 보고서와 발표
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../8-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 8 - Part 8. 마무리와 다음 여정 — 최종 점검과 성찰
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="정보 2단원 데이터" class="md-nav__button md-logo" aria-label="정보 2단원 데이터" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    정보 2단원 데이터
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 - Part 1. 데이터를 지켜라 — 압축과 암호화
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 - Part 1. 데이터를 지켜라 — 압축과 암호화
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터가 너무 커요! — 압축이 필요한 이유
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    비밀을 지켜라! — 암호화의 세계
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 - Part 2. 빅데이터란 무엇인가 — 수집과 준비
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 - Part 2. 빅데이터란 무엇인가 — 수집과 준비
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터가 폭발한다! — 빅데이터의 3V와 수집 방법
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    오렌지3, 처음 만나기 — 설치부터 첫 워크플로우까지
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 - Part 3. 데이터를 다듬어라 — 빅데이터 전처리
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 - Part 3. 데이터를 다듬어라 — 빅데이터 전처리
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    빠진 값, 이상한 값을 잡아라! — 결측치와 이상치 처리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터를 합치고 나누기 — 통합과 정규화
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 - Part 4. 데이터를 눈에 보이게 — 빅데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 - Part 4. 데이터를 눈에 보이게 — 빅데이터 시각화
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터를 그림으로 — 박스플롯, 히스토그램, 산점도
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    지도와 시간으로 보는 데이터 — 지리·시간 데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 - Part 5. 이미지와 텍스트도 데이터다 — 비정형 데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 - Part 5. 이미지와 텍스트도 데이터다 — 비정형 데이터 시각화
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    사진도 데이터다 — 이미지 데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    글자도 데이터다 — 텍스트 데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 - Part 6. 데이터로 문제를 해결하라 — 협력적 창의·융합 프로젝트
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 - Part 6. 데이터로 문제를 해결하라 — 협력적 창의·융합 프로젝트
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    문제를 발견하라 — 안전사고 데이터 수집과 전처리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터로 이야기하라 — 안전사고 데이터 시각화와 인사이트 도출
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 - Part 7. 나의 데이터 이야기를 완성하라 — 보고서와 발표
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 - Part 7. 나의 데이터 이야기를 완성하라 — 보고서와 발표
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    보고서를 완성하라 — 구글 슬라이드로 분석 결과 정리하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    발표하고 피드백하라 — 모둠 발표와 동료 평가
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 - Part 8. 마무리와 다음 여정 — 최종 점검과 성찰
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 - Part 8. 마무리와 다음 여정 — 최종 점검과 성찰
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    최종 점검 — 루브릭으로 셀프 체크하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    돌아보기 그리고 앞으로 — 성찰과 다음 여정
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 이 장에서 배우는 것
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 왜 이걸 배우나요?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 핵심 개념
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 핵심 개념">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-box-plot-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념 1: 박스플롯 (Box Plot) - 데이터를 5개 숫자로 요약하다
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="개념 1: 박스플롯 (Box Plot) - 데이터를 5개 숫자로 요약하다">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        비유로 시작
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정확한 정의
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예시로 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-histogram-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념 2: 히스토그램 (Histogram) - 데이터가 어디에 얼마나 모여 있나
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="개념 2: 히스토그램 (Histogram) - 데이터가 어디에 얼마나 모여 있나">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        비유로 시작
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정확한 정의
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예시로 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-scatter-plot-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념 3: 산점도 (Scatter Plot) - 두 변수는 사이좋게 움직이나?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="개념 3: 산점도 (Scatter Plot) - 두 변수는 사이좋게 움직이나?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        비유로 시작
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        정확한 정의
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        예시로 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념 4: 세 가지 차트, 어떻게 고를까?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔨 따라하기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔨 따라하기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: 오렌지3 — 데이터 불러오기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-3-box-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: 오렌지3 — Box Plot으로 박스플롯 그리기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-3-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: 오렌지3 — Distributions로 히스토그램 그리기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-3-scatter-plot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: 오렌지3 — Scatter Plot으로 산점도 그리기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: 완성된 오렌지3 워크플로우 확인
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6-matplotlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: 파이썬 matplotlib으로 직접 그려보기
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 전체 코드
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ 자주 하는 실수
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 스스로 점검하기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 더 해보기 — 우리 반 데이터로 산점도 그리기
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-07-1-">Chapter 07. 데이터를 그림으로 ① - 기본 차트 마스터<a class="headerlink" href="#chapter-07-1-" title="Permanent link">&para;</a></h1>
+<p><strong>Part 4 | [2권] 데이터 시각화 - 그림으로 말하기</strong></p>
+<hr />
+<h2 id="_1">🎯 이 장에서 배우는 것<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 박스플롯, 히스토그램, 산점도가 각각 어떤 상황에 적합한지 구분하여 설명할 수 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 오렌지3에서 Box Plot, Distributions, Scatter Plot 위젯을 연결하여 데이터를 시각화할 수 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 시각화 결과를 보고 데이터의 분포와 변수 간 관계를 자신의 말로 해석할 수 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> matplotlib을 사용한 파이썬 코드로 세 가지 기본 차트를 직접 그릴 수 있다.</li>
+</ul>
+<hr />
+<h2 id="_2">💡 왜 이걸 배우나요?<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>여러분 반 친구들의 키 데이터가 있다고 생각해 보세요. 숫자 30개가 쭉 나열된 표를 눈으로 훑으면 "음... 대충 160cm 근처가 많은 것 같은데?" 정도밖에 파악하기 어렵습니다.</p>
+<p>그런데 같은 데이터를 그래프로 그리면 어떨까요?</p>
+<blockquote>
+<p>"150cm 이하가 5명, 160~170cm 구간에 몰려 있고, 180cm 이상인 친구가 2명 있네. 그리고 딱 한 명이 유난히 작거나 크게 튀어나와 있어."</p>
+</blockquote>
+<p>이렇게 <strong>데이터의 이야기</strong>가 한눈에 들어옵니다. 숫자를 그림으로 바꾸는 순간, 숨어 있던 패턴이 모습을 드러냅니다.</p>
+<p>데이터 분석가들은 새로운 데이터를 받으면 가장 먼저 이 작업을 합니다. 표를 읽기 전에 그래프부터 그립니다. 그 이유를 이번 챕터에서 직접 경험해 봅시다.</p>
+<hr />
+<h2 id="_3">📚 핵심 개념<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1-box-plot-5">개념 1: 박스플롯 (Box Plot) - 데이터를 5개 숫자로 요약하다<a class="headerlink" href="#1-box-plot-5" title="Permanent link">&para;</a></h3>
+<h4 id="_4">비유로 시작<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>반 아이들이 모두 키 순서대로 일렬로 서 있다고 상상해 보세요. 맨 앞(가장 작은 아이)부터 맨 뒤(가장 큰 아이)까지 쭉 줄을 섰습니다. 이제 다음을 관찰합니다.</p>
+<ul>
+<li><strong>가장 앞</strong>: 제일 작은 아이 (최솟값)</li>
+<li><strong>앞에서 25% 지점</strong>: 앞에서 4분의 1 지점에 선 아이 (1사분위수, Q1)</li>
+<li><strong>정중앙</strong>: 딱 가운데 선 아이 (중앙값, Q2)</li>
+<li><strong>앞에서 75% 지점</strong>: 앞에서 4분의 3 지점에 선 아이 (3사분위수, Q3)</li>
+<li><strong>가장 뒤</strong>: 제일 큰 아이 (최댓값)</li>
+</ul>
+<p>박스플롯은 이 5개 지점을 그림으로 그린 것입니다.</p>
+<h4 id="_5">정확한 정의<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>박스플롯(상자 수염 그림)은 데이터의 <strong>분포와 퍼짐 정도</strong>를 5가지 통계값으로 요약하는 차트입니다. 사각형 "상자"와 상자 위아래로 뻗은 "수염"으로 구성됩니다.</p>
+<div class="mermaid">graph LR
+    A["최솟값\n(Min)"] --- B["1사분위수\nQ1 (25%)"]
+    B --- C["중앙값\nQ2 (50%)"]
+    C --- D["3사분위수\nQ3 (75%)"]
+    D --- E["최댓값\n(Max)"]
+
+    style B fill:#4A90D9,color:#fff
+    style C fill:#E67E22,color:#fff
+    style D fill:#4A90D9,color:#fff</div>
+<p><strong>핵심 용어 정리</strong></p>
+<ul>
+<li><strong>IQR (사분위 범위)</strong>: Q3 - Q1, 상자의 세로 길이. 중간 50% 데이터가 퍼진 범위</li>
+<li><strong>이상치(Outlier)</strong>: IQR의 1.5배를 벗어난 값. 수염 밖에 점으로 표시됨</li>
+</ul>
+<h4 id="_6">예시로 확인<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>🧠 <strong>알아보기</strong>: 박스가 크면 데이터가 넓게 퍼져 있다는 뜻이고, 박스가 작으면 데이터가 중앙값 근처에 모여 있다는 뜻입니다. 중앙값 선이 상자의 위쪽에 치우쳐 있으면 낮은 값들이 촘촘하고, 아래쪽에 치우쳐 있으면 높은 값들이 촘촘한 것입니다.</p>
+</blockquote>
+<p><strong>박스플롯이 특히 유용한 상황</strong>
+- 여러 그룹(예: 반별, 성별)을 <strong>나란히 비교</strong>할 때
+- 이상치(튀는 값)가 있는지 <strong>빠르게 확인</strong>할 때
+- 데이터의 <strong>중앙값과 퍼짐</strong>을 동시에 보고 싶을 때</p>
+<hr />
+<h3 id="2-histogram-">개념 2: 히스토그램 (Histogram) - 데이터가 어디에 얼마나 모여 있나<a class="headerlink" href="#2-histogram-" title="Permanent link">&para;</a></h3>
+<h4 id="_7">비유로 시작<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p>학교 앞 문구점에서 하루 동안 팔린 물건들의 가격 데이터가 있습니다. 500원짜리 지우개도 있고, 2000원짜리 공책도 있고, 5000원짜리 파일도 있습니다. "가격대별로 몇 개씩 팔렸을까?"를 보고 싶다면 어떻게 할까요?</p>
+<p>500원~999원 구간에 막대 하나, 1000원~1999원 구간에 막대 하나, 이런 식으로 구간별로 막대를 세우면 됩니다. 이것이 히스토그램입니다.</p>
+<h4 id="_8">정확한 정의<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<p>히스토그램은 <strong>연속형 수치 데이터</strong>를 일정 구간(bin)으로 나누어 각 구간에 속한 데이터 개수를 막대 높이로 표현한 차트입니다.</p>
+<div class="mermaid">flowchart LR
+    A["전체 데이터\n(예: 키 30개)"]
+    B["구간 나누기\n150~155, 155~160..."]
+    C["구간별 개수 세기"]
+    D["막대 높이로\n개수 표현"]
+
+    A --&gt; B --&gt; C --&gt; D
+
+    style A fill:#27AE60,color:#fff
+    style D fill:#E74C3C,color:#fff</div>
+<p><strong>막대그래프와 히스토그램의 차이</strong></p>
+<p>히스토그램을 처음 보면 막대그래프와 헷갈리기 쉽습니다.</p>
+<ul>
+<li><strong>막대그래프</strong>: 막대와 막대 사이에 <strong>간격이 있음</strong>, 카테고리형 데이터(국어·수학·영어 점수처럼 분리된 항목)</li>
+<li><strong>히스토그램</strong>: 막대와 막대가 <strong>딱 붙어 있음</strong>, 연속형 데이터(키, 온도, 시간처럼 연결된 값)</li>
+</ul>
+<h4 id="_9">예시로 확인<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>🧠 <strong>알아보기</strong>: 히스토그램의 모양을 보면 데이터의 "성격"을 알 수 있습니다.
+- <strong>종 모양(정규분포)</strong>: 중앙에 몰려 있고 양쪽이 대칭 → 자연스러운 분포
+- <strong>왼쪽으로 치우침</strong>: 높은 값이 많고 낮은 값이 드문드문
+- <strong>오른쪽으로 치우침</strong>: 낮은 값이 많고 높은 값이 드문드문
+- <strong>두 개의 봉우리</strong>: 두 그룹이 섞여 있을 가능성</p>
+</blockquote>
+<p><strong>히스토그램이 특히 유용한 상황</strong>
+- 데이터의 <strong>전체적인 분포 모양</strong>을 파악할 때
+- <strong>어느 값이 가장 많이 나타나는지</strong> 확인할 때
+- 데이터가 <strong>정규분포</strong>를 따르는지 대략 확인할 때</p>
+<hr />
+<h3 id="3-scatter-plot-">개념 3: 산점도 (Scatter Plot) - 두 변수는 사이좋게 움직이나?<a class="headerlink" href="#3-scatter-plot-" title="Permanent link">&para;</a></h3>
+<h4 id="_10">비유로 시작<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>여러분 반 친구들의 키와 발 사이즈 데이터가 있다고 합시다. "키가 크면 발도 클까?"라는 궁금증이 생겼습니다. 이걸 확인하는 가장 직관적인 방법은 각 친구를 점 하나로 찍는 것입니다.</p>
+<ul>
+<li>가로축(X축): 키</li>
+<li>세로축(Y축): 발 사이즈</li>
+<li>친구 한 명 = 점 하나</li>
+</ul>
+<p>30명을 모두 찍으면 점들이 어떤 방향으로 모여 있는지 보입니다. 오른쪽 위 방향으로 몰려 있다면 "키가 클수록 발도 크다"는 이야기입니다.</p>
+<h4 id="_11">정확한 정의<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
+<p>산점도는 두 개의 수치형 변수를 X축과 Y축으로 설정하고, 각 데이터 포인트를 평면 위의 점으로 표시하는 차트입니다. 두 변수 사이의 <strong>관계(상관관계)</strong> 를 시각적으로 파악하는 데 사용합니다.</p>
+<div class="mermaid">flowchart TD
+    A["두 변수 선택\n예: 키와 발 사이즈"]
+    B{"점들의 방향"}
+    C["오른쪽 위↗\n양의 상관관계\n(함께 증가)"]
+    D["오른쪽 아래↘\n음의 상관관계\n(하나 증가 → 하나 감소)"]
+    E["방향 없음\n상관관계 없음"]
+
+    A --&gt; B
+    B --&gt; C
+    B --&gt; D
+    B --&gt; E
+
+    style C fill:#27AE60,color:#fff
+    style D fill:#E74C3C,color:#fff
+    style E fill:#95A5A6,color:#fff</div>
+<h4 id="_12">예시로 확인<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>🧠 <strong>알아보기</strong>: 점들이 일직선에 가깝게 모여 있을수록 상관관계가 <strong>강하고</strong>, 사방으로 흩어져 있을수록 <strong>약합니다</strong>. 산점도만으로 "원인과 결과"는 알 수 없고, 오직 "함께 변하는지"만 알 수 있다는 점을 기억하세요.</p>
+</blockquote>
+<p><strong>산점도가 특히 유용한 상황</strong>
+- 두 변수 사이에 <strong>관계가 있는지</strong> 탐색할 때
+- <strong>이상치(특이한 점)</strong>를 시각적으로 찾을 때
+- 여러 그룹을 <strong>색으로 구분</strong>해서 패턴을 비교할 때</p>
+<hr />
+<h3 id="4">개념 4: 세 가지 차트, 어떻게 고를까?<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>💡 <strong>생각해보기</strong>: "어떤 차트를 써야 할지 모르겠어요!" 라는 고민, 당연합니다. 아래 흐름도를 기억하면 대부분의 상황에서 올바른 선택을 할 수 있습니다.</p>
+</blockquote>
+<div class="mermaid">flowchart TD
+    A["데이터 시각화 목표는?"]
+    B{"변수 개수"}
+    C["1개 변수"]
+    D["2개 변수"]
+    E{"보고 싶은 것"}
+    F["분포 모양\n(어디 몰려 있나?)"]
+    G["요약 통계\n(중앙·퍼짐·이상치)"]
+    H["히스토그램\n📊 Distributions"]
+    I["박스플롯\n📦 Box Plot"]
+    J["산점도\n🔵 Scatter Plot"]
+
+    A --&gt; B
+    B --&gt; C
+    B --&gt; D
+    C --&gt; E
+    E --&gt; F --&gt; H
+    E --&gt; G --&gt; I
+    D --&gt; J
+
+    style H fill:#3498DB,color:#fff
+    style I fill:#E67E22,color:#fff
+    style J fill:#27AE60,color:#fff</div>
+<hr />
+<h2 id="_13">🔨 따라하기<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p>오렌지3와 파이썬 matplotlib을 모두 사용해봅니다. 오렌지3는 코딩 없이 시각화를 체험하고, 파이썬 코드는 직접 커스터마이징하는 방법을 익히는 데 활용합니다.</p>
+<p><strong>사용할 데이터</strong>: <code>iris</code> 데이터셋 (붓꽃 150송이의 꽃잎 길이·너비 등 4가지 수치, 3가지 품종)</p>
+<hr />
+<h3 id="step-1-3">Step 1: 오렌지3 — 데이터 불러오기<a class="headerlink" href="#step-1-3" title="Permanent link">&para;</a></h3>
+<ol>
+<li>오렌지3를 실행합니다.</li>
+<li>왼쪽 위젯 패널에서 <strong>Data</strong> 탭을 클릭합니다.</li>
+<li><strong>Datasets</strong> 위젯을 캔버스로 드래그합니다.</li>
+<li>Datasets 위젯을 더블클릭하고 검색창에 <code>iris</code>를 입력합니다.</li>
+<li><code>iris</code> 데이터셋을 선택한 뒤 <strong>Send</strong> 버튼을 클릭합니다.</li>
+</ol>
+<blockquote>
+<p>✅ <strong>확인</strong>: 위젯 아래쪽에 <code>150 instances, 5 features</code>라고 표시되면 성공입니다.</p>
+</blockquote>
+<hr />
+<h3 id="step-2-3-box-plot">Step 2: 오렌지3 — Box Plot으로 박스플롯 그리기<a class="headerlink" href="#step-2-3-box-plot" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Visualize</strong> 탭에서 <strong>Box Plot</strong> 위젯을 캔버스로 드래그합니다.</li>
+<li>Datasets 위젯의 출력 포트(오른쪽 점)에서 Box Plot 위젯의 입력 포트(왼쪽 점)로 선을 연결합니다.</li>
+<li>Box Plot 위젯을 더블클릭하여 설정창을 엽니다.</li>
+<li><strong>Variable</strong> 항목에서 <code>petal length</code>를 선택합니다.</li>
+<li><strong>Subgroups</strong> 항목에서 <code>iris</code>(품종)를 선택합니다.</li>
+</ol>
+<blockquote>
+<p>✅ <strong>확인</strong>: 세 품종(setosa, versicolor, virginica)의 박스플롯이 나란히 그려지면 성공입니다. setosa의 상자가 월등히 작고 낮은 위치에 있음을 확인하세요.</p>
+</blockquote>
+<hr />
+<h3 id="step-3-3-distributions">Step 3: 오렌지3 — Distributions로 히스토그램 그리기<a class="headerlink" href="#step-3-3-distributions" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Visualize</strong> 탭에서 <strong>Distributions</strong> 위젯을 캔버스로 드래그합니다.</li>
+<li>Datasets 위젯과 Distributions 위젯을 연결합니다.</li>
+<li>Distributions 위젯을 더블클릭합니다.</li>
+<li><strong>Variable</strong> 항목에서 <code>petal length</code>를 선택합니다.</li>
+<li><strong>Group by</strong> 항목에서 <code>iris</code>를 선택합니다.</li>
+</ol>
+<blockquote>
+<p>✅ <strong>확인</strong>: 히스토그램이 두 개의 봉우리를 가진 모양(setosa 그룹과 나머지 두 그룹이 분리)으로 나타나면 성공입니다.</p>
+</blockquote>
+<hr />
+<h3 id="step-4-3-scatter-plot">Step 4: 오렌지3 — Scatter Plot으로 산점도 그리기<a class="headerlink" href="#step-4-3-scatter-plot" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Visualize</strong> 탭에서 <strong>Scatter Plot</strong> 위젯을 캔버스로 드래그합니다.</li>
+<li>Datasets 위젯과 Scatter Plot 위젯을 연결합니다.</li>
+<li>Scatter Plot 위젯을 더블클릭합니다.</li>
+<li><strong>X 축</strong>에 <code>petal length</code>, <strong>Y 축</strong>에 <code>petal width</code>를 설정합니다.</li>
+<li><strong>Color</strong> 항목에서 <code>iris</code>를 선택합니다.</li>
+</ol>
+<blockquote>
+<p>✅ <strong>확인</strong>: 세 가지 색의 점 무리가 왼쪽 아래(setosa), 중간(versicolor), 오른쪽 위(virginica)로 나뉘어 오른쪽 위 방향으로 배열되면 성공입니다. 꽃잎 길이와 너비가 강한 양의 상관관계를 보이는 것을 확인하세요.</p>
+</blockquote>
+<hr />
+<h3 id="step-5-3">Step 5: 완성된 오렌지3 워크플로우 확인<a class="headerlink" href="#step-5-3" title="Permanent link">&para;</a></h3>
+<p>세 위젯을 모두 연결한 전체 구조는 다음과 같습니다.</p>
+<div class="mermaid">flowchart LR
+    A["📂 Datasets\niris 150개"] --&gt; B["📦 Box Plot\npetal length\n품종별 비교"]
+    A --&gt; C["📊 Distributions\npetal length\n분포 확인"]
+    A --&gt; D["🔵 Scatter Plot\nX: petal length\nY: petal width"]
+
+    style A fill:#2C3E50,color:#fff
+    style B fill:#E67E22,color:#fff
+    style C fill:#3498DB,color:#fff
+    style D fill:#27AE60,color:#fff</div>
+<hr />
+<h3 id="step-6-matplotlib">Step 6: 파이썬 matplotlib으로 직접 그려보기<a class="headerlink" href="#step-6-matplotlib" title="Permanent link">&para;</a></h3>
+<p>오렌지3로 클릭만으로 그린 차트를 이번엔 파이썬 코드로 직접 그려봅니다. 아래 코드를 복사해서 실행해보세요.</p>
+<hr />
+<h2 id="_14">📝 전체 코드<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_iris</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># 데이터 불러오기</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">iris</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">df</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">target_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">]</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># 한글 깨짐 방지 (윈도우 사용 시)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;axes.unicode_minus&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># ─────────────────────────────────────────</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># 그림 1: 박스플롯 - 품종별 꽃잎 길이 비교</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># ─────────────────────────────────────────</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="n">species_list</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="n">data_by_species</span> <span class="o">=</span> <span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">][</span><span class="s1">&#39;petal length (cm)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>                   <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">species_list</span><span class="p">]</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">ax</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">data_by_species</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">species_list</span><span class="p">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;품종별 꽃잎 길이 - 박스플롯&#39;</span><span class="p">)</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;품종&#39;</span><span class="p">)</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;꽃잎 길이 (cm)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;boxplot.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="c1"># ─────────────────────────────────────────</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="c1"># 그림 2: 히스토그램 - 꽃잎 길이 전체 분포</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="c1"># ─────────────────────────────────────────</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;#E74C3C&#39;</span><span class="p">,</span> <span class="s1">&#39;#3498DB&#39;</span><span class="p">,</span> <span class="s1">&#39;#27AE60&#39;</span><span class="p">]</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">for</span> <span class="n">species</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">species_list</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a>    <span class="n">subset</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">species</span><span class="p">][</span><span class="s1">&#39;petal length (cm)&#39;</span><span class="p">]</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">subset</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">species</span><span class="p">)</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>
+</span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;꽃잎 길이 분포 - 히스토그램&#39;</span><span class="p">)</span>
+</span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;꽃잎 길이 (cm)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;개수&#39;</span><span class="p">)</span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;histogram.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a>
+</span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="c1"># ─────────────────────────────────────────</span>
+</span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="c1"># 그림 3: 산점도 - 꽃잎 길이 vs 꽃잎 너비</span>
+</span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="c1"># ─────────────────────────────────────────</span>
+</span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="k">for</span> <span class="n">species</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">species_list</span><span class="p">,</span> <span class="n">colors</span><span class="p">):</span>
+</span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a>    <span class="n">subset</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;species&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">species</span><span class="p">]</span>
+</span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">subset</span><span class="p">[</span><span class="s1">&#39;petal length (cm)&#39;</span><span class="p">],</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a>               <span class="n">subset</span><span class="p">[</span><span class="s1">&#39;petal width (cm)&#39;</span><span class="p">],</span>
+</span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a>               <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">species</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+</span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a>
+</span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;꽃잎 길이 vs 꽃잎 너비 - 산점도&#39;</span><span class="p">)</span>
+</span><span id="__span-0-60"><a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;꽃잎 길이 (cm)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-61"><a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;꽃잎 너비 (cm)&#39;</span><span class="p">)</span>
+</span><span id="__span-0-62"><a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</span><span id="__span-0-63"><a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</span><span id="__span-0-64"><a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;scatterplot.png&#39;</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</span><span id="__span-0-65"><a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<p><strong>코드 실행 전 설치 확인</strong></p>
+<p>터미널에서 아래 명령어로 필요한 라이브러리를 설치하세요.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pip<span class="w"> </span>install<span class="w"> </span>matplotlib<span class="w"> </span>scikit-learn<span class="w"> </span>pandas
+</span></code></pre></div>
+<blockquote>
+<p>💡 <strong>코드 해설 포인트</strong>
+- <code>alpha=0.6</code> → 투명도를 60%로 설정, 겹치는 막대나 점이 비쳐 보임
+- <code>labels=species_list</code> → 박스플롯의 X축에 품종 이름 표시
+- <code>plt.savefig(...)</code> → 차트를 이미지 파일로 저장 (제출 시 활용 가능)</p>
+</blockquote>
+<hr />
+<h2 id="_15">⚠️ 자주 하는 실수<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p><strong>실수 1: 오렌지3에서 위젯 연결 포트 방향을 반대로 연결한다</strong></p>
+<p>위젯의 왼쪽 포트는 <strong>입력</strong>, 오른쪽 포트는 <strong>출력</strong>입니다. 데이터는 왼쪽에서 오른쪽으로 흐릅니다. Datasets(출력) → Box Plot(입력) 방향으로 연결해야 합니다. 반대로 연결하면 데이터가 전달되지 않아 차트가 비어 있게 됩니다.</p>
+<p><strong>실수 2: 히스토그램과 막대그래프를 혼동한다</strong></p>
+<p>히스토그램은 막대가 <strong>서로 붙어 있고</strong>, 연속형 수치 데이터(키, 온도, 점수)에 사용합니다. 막대그래프는 막대 사이에 <strong>간격이 있고</strong>, 카테고리형 데이터(품종, 지역, 과목)에 사용합니다. matplotlib에서도 히스토그램은 <code>ax.hist()</code>, 막대그래프는 <code>ax.bar()</code>로 함수가 다릅니다.</p>
+<p><strong>실수 3: 산점도에서 "상관관계 = 인과관계"로 해석한다</strong></p>
+<p>점들이 오른쪽 위 방향으로 모여 있어도, 그것은 단지 "두 값이 함께 변하는 경향이 있다"는 것일 뿐입니다. "A가 B를 일으킨다"는 뜻이 아닙니다. 예를 들어 아이스크림 판매량과 익사 사고 건수는 양의 상관관계를 보이지만, 아이스크림이 익사를 일으키는 것은 아닙니다(더운 날씨라는 공통 원인이 있음).</p>
+<p><strong>실수 4: 박스플롯의 수염 끝을 최댓값/최솟값으로 오해한다</strong></p>
+<p>박스플롯의 수염 끝은 <strong>이상치를 제외한</strong> 최댓값/최솟값입니다. 수염 밖에 따로 찍힌 점들이 이상치입니다. 수염 끝 = 절대 최솟값/최댓값이라고 외우면 틀립니다.</p>
+<hr />
+<h2 id="_16">✅ 스스로 점검하기<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p><strong>기본 문제</strong></p>
+<p><strong>Q1.</strong> 다음 상황에 가장 적합한 차트를 고르세요.</p>
+<ul>
+<li>상황 A: 학생 50명의 수학 점수가 어느 구간에 얼마나 분포하는지 보고 싶다.</li>
+<li>상황 B: 학생들의 공부 시간과 시험 점수 사이에 관계가 있는지 보고 싶다.</li>
+<li>상황 C: 남학생과 여학생의 키를 중앙값과 퍼짐 정도로 비교하고 싶다.</li>
+</ul>
+<p><strong>Q2.</strong> 박스플롯에서 상자(박스)의 위아래 길이가 크다는 것은 무엇을 의미하나요?</p>
+<ul>
+<li>① 데이터 개수가 많다</li>
+<li>② 중간 50% 데이터가 넓게 퍼져 있다</li>
+<li>③ 이상치가 많다</li>
+<li>④ 평균값이 높다</li>
+</ul>
+<p><strong>Q3.</strong> 히스토그램에서 봉우리가 두 개(쌍봉) 모양으로 나타났습니다. 이것은 어떤 상황을 의심할 수 있나요?</p>
+<hr />
+<p><strong>응용 문제</strong></p>
+<p><strong>Q4.</strong> 파이썬 코드에서 <code>alpha=0.6</code>을 <code>alpha=1.0</code>으로 바꾸면 히스토그램이 어떻게 달라질지 예상하고, 실제로 코드를 수정해서 확인해 보세요.</p>
+<p><strong>Q5.</strong> 오렌지3 산점도에서 X축을 <code>sepal length</code>, Y축을 <code>sepal width</code>로 바꿔보세요. 꽃잎(petal) 데이터와 비교했을 때 상관관계가 더 강한가요, 약한가요? 이유를 두 줄로 설명해 보세요.</p>
+<hr />
+<p><strong>정답 확인</strong></p>
+<ul>
+<li>Q1: A → 히스토그램, B → 산점도, C → 박스플롯</li>
+<li>Q2: ②</li>
+<li>Q3: 서로 다른 두 그룹(예: 두 품종)이 하나의 데이터셋에 섞여 있을 가능성</li>
+</ul>
+<hr />
+<h2 id="_17">🚀 더 해보기 — 우리 반 데이터로 산점도 그리기<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<p><strong>도전 과제</strong>: 우리 반 친구들의 키와 발 사이즈를 직접 수집해서 산점도로 그리고 관계를 해석해 보세요.</p>
+<p><strong>Step 1: 데이터 수집</strong></p>
+<p>반 친구들에게 (동의를 구한 후) 키(cm)와 발 사이즈(mm 또는 호)를</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/title-link.js"></script>
+      
+    
+  </body>
+</html>

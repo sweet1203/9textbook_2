@@ -1,0 +1,21 @@
+{
+  "name": "text-book9_2",
+  "title": "정보교과서 2단원",
+  "author": "구정화",
+  "description": "이 교육자료는 정보수업(고등학교)을 위한 자료로 2단원 데이터. 수업을 위한 자료입니다.",
+  "claude_model": "claude-sonnet-4-20250514",
+  "settings": {
+    "batch_generation_enabled": true,
+    "auto_save": true,
+    "max_tokens": 16000,
+    "temperature": 1
+  },
+  "deployment": {
+    "auto_commit": false,
+    "auto_deploy": false,
+    "build_docx": true,
+    "build_website": true
+  },
+  "created_at": "2026-02-28T14:33:40.586Z",
+  "updated_at": "2026-02-28T14:33:40.586Z"
+}
