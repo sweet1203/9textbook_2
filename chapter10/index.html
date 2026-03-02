@@ -1,0 +1,2081 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="씨마스 2022 개정 정보 교과서 2단원(데이터)과 완전 연계한 실습 가이드입니다. 압축·암호화 개념 이해부터 오렌지3를 활용한 빅데이터 수집·전처리·시각화, 구글 도구를 활용한 과제 제출까지 8차시에 걸쳐 단계적으로 경험합니다.">
+      
+      
+        <meta name="author" content="Created with EduFlow">
+      
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Chapter 10. 텍스트 데이터 - 글에서 패턴 찾기 - 정보 2단원 데이터</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Noto Sans KR";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/custom.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-10-" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href=".." title="정보 2단원 데이터" class="md-header__button md-logo" aria-label="정보 2단원 데이터" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            정보 2단원 데이터
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 10. 텍스트 데이터 - 글에서 패턴 찾기
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="다크 모드로 전환"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="다크 모드로 전환" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-purple"  aria-label="라이트 모드로 전환"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="라이트 모드로 전환" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="탭" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../1-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 1 - Part 1. 데이터를 지켜라 — 압축과 암호화
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../2-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 2 - Part 2. 빅데이터란 무엇인가 — 수집과 준비
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../3-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 3 - Part 3. 데이터를 다듬어라 — 빅데이터 전처리
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../4-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 4 - Part 4. 데이터를 눈에 보이게 — 빅데이터 시각화
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../5-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 5 - Part 5. 이미지와 텍스트도 데이터다 — 비정형 데이터 시각화
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../6-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 6 - Part 6. 데이터로 문제를 해결하라 — 협력적 창의·융합 프로젝트
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../7-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 7 - Part 7. 나의 데이터 이야기를 완성하라 — 보고서와 발표
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../8-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Part 8 - Part 8. 마무리와 다음 여정 — 최종 점검과 성찰
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="정보 2단원 데이터" class="md-nav__button md-logo" aria-label="정보 2단원 데이터" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    정보 2단원 데이터
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 1 - Part 1. 데이터를 지켜라 — 압축과 암호화
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 1 - Part 1. 데이터를 지켜라 — 압축과 암호화
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터가 너무 커요! — 압축이 필요한 이유
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    비밀을 지켜라! — 암호화의 세계
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 2 - Part 2. 빅데이터란 무엇인가 — 수집과 준비
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 2 - Part 2. 빅데이터란 무엇인가 — 수집과 준비
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터가 폭발한다! — 빅데이터의 3V와 수집 방법
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    오렌지3, 처음 만나기 — 설치부터 첫 워크플로우까지
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 3 - Part 3. 데이터를 다듬어라 — 빅데이터 전처리
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 3 - Part 3. 데이터를 다듬어라 — 빅데이터 전처리
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    빠진 값, 이상한 값을 잡아라! — 결측치와 이상치 처리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터를 합치고 나누기 — 통합과 정규화
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 4 - Part 4. 데이터를 눈에 보이게 — 빅데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 4 - Part 4. 데이터를 눈에 보이게 — 빅데이터 시각화
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터를 그림으로 — 박스플롯, 히스토그램, 산점도
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    지도와 시간으로 보는 데이터 — 지리·시간 데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 5 - Part 5. 이미지와 텍스트도 데이터다 — 비정형 데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 5 - Part 5. 이미지와 텍스트도 데이터다 — 비정형 데이터 시각화
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    사진도 데이터다 — 이미지 데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    글자도 데이터다 — 텍스트 데이터 시각화
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 6 - Part 6. 데이터로 문제를 해결하라 — 협력적 창의·융합 프로젝트
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 6 - Part 6. 데이터로 문제를 해결하라 — 협력적 창의·융합 프로젝트
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    문제를 발견하라 — 안전사고 데이터 수집과 전처리
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    데이터로 이야기하라 — 안전사고 데이터 시각화와 인사이트 도출
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 7 - Part 7. 나의 데이터 이야기를 완성하라 — 보고서와 발표
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 7 - Part 7. 나의 데이터 이야기를 완성하라 — 보고서와 발표
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    보고서를 완성하라 — 구글 슬라이드로 분석 결과 정리하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    발표하고 피드백하라 — 모둠 발표와 동료 평가
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Part 8 - Part 8. 마무리와 다음 여정 — 최종 점검과 성찰
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Part 8 - Part 8. 마무리와 다음 여정 — 최종 점검과 성찰
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    최종 점검 — 루브릭으로 셀프 체크하기
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    돌아보기 그리고 앞으로 — 성찰과 다음 여정
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 이 장에서 배우는 것
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        💡 왜 이걸 배우나요?
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 핵심 개념
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📚 핵심 개념">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-text-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념 1: 텍스트 데이터(Text Data)란?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-tokenization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념 2: 토큰화(Tokenization)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-stopword" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념 3: 불용어(Stopword) 제거
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-word-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        개념 4: 워드클라우드(Word Cloud)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔨 따라하기 - 오렌지3로 워드클라우드 만들기
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔨 따라하기 - 오렌지3로 워드클라우드 만들기">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: 텍스트 파일 준비하기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-corpus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Corpus 위젯으로 텍스트 불러오기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-preprocess-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Preprocess Text 위젯으로 전처리하기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-4-word-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Word Cloud 위젯 연결하기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: 결과 해석하기
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: 불용어 커스터마이징
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 파이썬 코드로 보는 텍스트 분석
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ 자주 하는 실수
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 스스로 점검하기
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 더 해보기 - 도전 문제
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="chapter-10-">Chapter 10. 텍스트 데이터 - 글에서 패턴 찾기<a class="headerlink" href="#chapter-10-" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="_1">🎯 이 장에서 배우는 것<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 텍스트 데이터의 특성을 이해하고, 토큰화와 불용어 제거의 개념을 설명할 수 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 오렌지3의 Corpus, Preprocess Text, Word Cloud 위젯을 연결하여 텍스트를 시각화할 수 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 워드클라우드 결과를 읽고 텍스트의 핵심 주제와 키워드를 해석할 수 있다.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 파이썬 KoNLPy 코드의 기본 구조를 이해하고 텍스트 분석 흐름을 설명할 수 있다.</li>
+</ul>
+<hr />
+<h2 id="_2">💡 왜 이걸 배우나요?<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>여러분이 좋아하는 아이돌 노래 가사를 생각해보세요. 그 노래에서 <strong>가장 많이 나오는 단어</strong>는 무엇일까요? '사랑'일까요, '너'일까요, '우리'일까요?</p>
+<p>가사 한 편이면 몇 백 단어입니다. 눈으로 일일이 세려면 시간이 엄청 걸리죠. 하지만 컴퓨터에게 맡기면 0.1초 만에 분석이 끝납니다. 그리고 그 결과를 <strong>워드클라우드(Word Cloud)</strong> 라는 그림으로 표현하면, 중요한 단어일수록 크게 표시되어 텍스트의 핵심이 한눈에 보입니다.</p>
+<p>이게 바로 <strong>텍스트 데이터 분석</strong>입니다.</p>
+<p>텍스트 분석은 실생활 곳곳에서 쓰입니다.</p>
+<ul>
+<li><strong>기업의 고객 리뷰 분석</strong>: "이 제품에 대한 불만이 뭔지 빠르게 파악하자"</li>
+<li><strong>선거 여론조사</strong>: "후보자에 대해 사람들이 어떤 단어를 가장 많이 쓰는지 보자"</li>
+<li><strong>뉴스 트렌드 파악</strong>: "오늘 가장 많이 언급된 키워드는?"</li>
+</ul>
+<p>숫자 데이터(키, 몸무게, 점수)와 달리, 텍스트는 <strong>의미를 담은 데이터</strong>입니다. 이걸 분석하면 사람들의 생각과 감정을 읽어낼 수 있어요. 이 장에서는 텍스트 분석의 첫걸음, <strong>전처리와 시각화</strong>를 배웁니다.</p>
+<hr />
+<h2 id="_3">📚 핵심 개념<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="1-text-data">개념 1: 텍스트 데이터(Text Data)란?<a class="headerlink" href="#1-text-data" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>비유로 시작</strong> 🍱
+숫자 데이터가 도시락통 안에 정갈하게 담긴 반찬이라면, 텍스트 데이터는 냉장고 안에 뒤섞여 있는 재료들입니다. 요리(분석)를 하려면 먼저 재료를 <strong>다듬고 정리</strong>해야 합니다.</p>
+</blockquote>
+<p><strong>정확한 정의</strong>: 텍스트 데이터란 문자로 이루어진 비정형 데이터입니다. 숫자처럼 바로 계산할 수 없고, 컴퓨터가 이해할 수 있는 형태로 <strong>변환(전처리)</strong> 하는 과정이 반드시 필요합니다.</p>
+<p><strong>예시로 확인</strong>:</p>
+<p>아래 두 가지를 비교해보세요.</p>
+<ul>
+<li><strong>숫자 데이터</strong>: 82, 75, 91, 68 → 바로 평균 계산 가능</li>
+<li><strong>텍스트 데이터</strong>: "오늘 날씨가 정말 맑고 좋다" → 바로 계산 불가, 전처리 필요</li>
+</ul>
+<p>텍스트 데이터의 특징을 정리하면 이렇습니다.</p>
+<ul>
+<li><strong>비정형(Unstructured)</strong>: 행과 열이 없고 길이도 제각각</li>
+<li><strong>맥락 의존적</strong>: 같은 단어도 문맥에 따라 뜻이 달라짐 ("배가 고프다" vs "배가 뜬다")</li>
+<li><strong>노이즈가 많음</strong>: 문법, 맞춤법 오류, 특수문자 등 불필요한 요소가 섞여 있음</li>
+</ul>
+<hr />
+<h3 id="2-tokenization">개념 2: 토큰화(Tokenization)<a class="headerlink" href="#2-tokenization" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>비유로 시작</strong> ✂️
+긴 문장을 분석하는 건 통째로 삼키는 것처럼 어렵습니다. 토큰화는 문장을 <strong>한 입 크기로 잘라주는 것</strong>입니다. 마치 빵을 한 조각씩 잘라 먹기 좋게 만드는 것처럼요.</p>
+</blockquote>
+<p><strong>정확한 정의</strong>: 토큰화란 텍스트를 분석 단위(토큰, Token)로 쪼개는 과정입니다. 보통 단어 단위로 나누지만, 문장 단위, 형태소 단위로 나누기도 합니다.</p>
+<p><strong>예시로 확인</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>원문: &quot;나는 오늘 학교에서 친구를 만났다&quot;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>단어 토큰화 결과:
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>[&quot;나는&quot;, &quot;오늘&quot;, &quot;학교에서&quot;, &quot;친구를&quot;, &quot;만났다&quot;]
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>형태소 토큰화 결과 (한국어):
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>[&quot;나&quot;, &quot;는&quot;, &quot;오늘&quot;, &quot;학교&quot;, &quot;에서&quot;, &quot;친구&quot;, &quot;를&quot;, &quot;만나&quot;, &quot;았&quot;, &quot;다&quot;]
+</span></code></pre></div>
+<p>한국어는 영어와 달리 <strong>조사(은/는/이/가)</strong> 와 <strong>어미(았/었/겠)</strong> 가 단어에 붙어 있어서, 단순히 띄어쓰기로 자르면 부정확합니다. 그래서 한국어는 <strong>형태소 분석기</strong>가 필요합니다.</p>
+<div class="mermaid">graph LR
+    A["원문 텍스트\n나는 오늘 학교에서"] --&gt; B["토큰화"]
+    B --&gt; C["나는"]
+    B --&gt; D["오늘"]
+    B --&gt; E["학교에서"]
+    C --&gt; F["형태소 분석\n나 + 는"]
+    E --&gt; G["형태소 분석\n학교 + 에서"]</div>
+<hr />
+<h3 id="3-stopword">개념 3: 불용어(Stopword) 제거<a class="headerlink" href="#3-stopword" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>비유로 시작</strong> 🧹
+책상을 청소할 때 필요한 물건만 남기고 잡동사니는 버리죠? 불용어 제거는 텍스트 분석에서 <strong>의미 없는 단어를 버리는 청소 작업</strong>입니다.</p>
+</blockquote>
+<p><strong>정확한 정의</strong>: 불용어(Stopword)란 분석에 도움이 되지 않는, 너무 자주 등장하는 단어들입니다. 한국어에서는 조사, 접속사, 일부 부사가 이에 해당합니다.</p>
+<p><strong>예시로 확인</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>토큰화된 단어들:
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>[&quot;나&quot;, &quot;는&quot;, &quot;오늘&quot;, &quot;학교&quot;, &quot;에서&quot;, &quot;친구&quot;, &quot;를&quot;, &quot;만나&quot;, &quot;았&quot;, &quot;다&quot;]
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>불용어 목록: [&quot;는&quot;, &quot;에서&quot;, &quot;를&quot;, &quot;았&quot;, &quot;다&quot;]
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>불용어 제거 후:
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>[&quot;나&quot;, &quot;오늘&quot;, &quot;학교&quot;, &quot;친구&quot;, &quot;만나&quot;]
+</span></code></pre></div>
+<p>불용어를 제거하면 <strong>핵심 단어만 남아</strong> 분석이 훨씬 정확해집니다. 만약 제거하지 않으면, "은/는/이/가"가 가장 큰 단어로 워드클라우드에 표시되어 아무 의미도 없는 결과가 나옵니다.</p>
+<div class="mermaid">graph TD
+    A["원문 텍스트"] --&gt; B["토큰화"]
+    B --&gt; C["불용어 제거"]
+    C --&gt; D["핵심 단어 목록"]
+    D --&gt; E["빈도 계산"]
+    E --&gt; F["워드클라우드"]
+
+    style A fill:#FFE4B5
+    style D fill:#90EE90
+    style F fill:#87CEEB</div>
+<hr />
+<h3 id="4-word-cloud">개념 4: 워드클라우드(Word Cloud)<a class="headerlink" href="#4-word-cloud" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>비유로 시작</strong> 🌤️
+워드클라우드는 단어들이 구름처럼 모여 있는 그림입니다. 많이 나온 단어는 크게, 적게 나온 단어는 작게 표시됩니다. 마치 <strong>인기투표 결과를 그림으로 그린 것</strong>과 같습니다.</p>
+</blockquote>
+<p><strong>정확한 정의</strong>: 워드클라우드는 텍스트에서 단어의 등장 빈도를 시각화한 그래프입니다. 단어의 크기가 빈도에 비례하며, 색상이나 위치는 강조 효과를 위해 사용됩니다.</p>
+<p><strong>예시로 확인</strong>:</p>
+<p>뉴스 기사 100개를 분석했더니 이런 빈도가 나왔다고 가정해봅시다.</p>
+<ul>
+<li>경제: 450회 → <strong>매우 크게 표시</strong></li>
+<li>성장: 280회 → 크게 표시</li>
+<li>수출: 190회 → 보통 크기</li>
+<li>기업: 150회 → 보통 크기</li>
+<li>회의: 40회 → 작게 표시</li>
+</ul>
+<p>이 결과를 워드클라우드로 만들면, '경제'라는 단어가 가장 크게 중앙을 차지하고, 나머지 단어들이 크기 순으로 주변에 배치됩니다. 보는 사람은 "아, 이 뉴스들은 경제 성장에 관한 내용이구나"를 단번에 알 수 있습니다.</p>
+<blockquote>
+<p>💡 <strong>알아보기</strong>: 워드클라우드의 한계
+워드클라우드는 빈도만 보여줍니다. "좋다"와 "나쁘다"가 같은 빈도면 같은 크기로 표시되죠. 긍정/부정 감정을 구분하는 <strong>감성 분석(Sentiment Analysis)</strong> 은 더 고급 기술이 필요합니다.</p>
+</blockquote>
+<hr />
+<h2 id="-3">🔨 따라하기 - 오렌지3로 워드클라우드 만들기<a class="headerlink" href="#-3" title="Permanent link">&para;</a></h2>
+<p>오렌지3는 코딩 없이 블록을 연결해서 데이터를 분석하는 도구입니다. 텍스트 분석 기능도 포함되어 있어 워드클라우드를 쉽게 만들 수 있습니다.</p>
+<blockquote>
+<p>⚠️ <strong>사전 준비</strong>: 오렌지3 Text 애드온이 설치되어 있어야 합니다.
+오렌지3 실행 → 상단 메뉴 Options → Add-ons → Text 체크 → 설치 후 재시작</p>
+</blockquote>
+<hr />
+<h3 id="step-1">Step 1: 텍스트 파일 준비하기<a class="headerlink" href="#step-1" title="Permanent link">&para;</a></h3>
+<p>실습에 사용할 텍스트 파일을 만듭니다. 메모장(Windows) 또는 텍스트 편집기를 열고 아래 내용을 붙여넣은 뒤, <code>news_sample.txt</code>로 저장합니다.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>인공지능 기술이 빠르게 발전하고 있다. 딥러닝과 머신러닝을 활용한 인공지능 
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>서비스가 의료, 교육, 금융 분야에서 활발히 사용되고 있다. 특히 인공지능 
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>챗봇은 고객 서비스 분야에서 혁신을 이끌고 있다. 전문가들은 인공지능이 
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>미래 산업의 핵심 기술이 될 것이라고 전망한다. 기업들은 인공지능 연구개발에 
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>막대한 투자를 아끼지 않고 있으며, 인공지능 전문 인재 확보 경쟁도 치열하다.
+</span></code></pre></div>
+<p>파일 저장 시 인코딩을 <strong>UTF-8</strong>로 설정하는 것이 중요합니다. (메모장에서 저장 시 인코딩 선택 가능)</p>
+<hr />
+<h3 id="step-2-corpus">Step 2: Corpus 위젯으로 텍스트 불러오기<a class="headerlink" href="#step-2-corpus" title="Permanent link">&para;</a></h3>
+<p>오렌지3를 실행하고 새 워크플로우를 시작합니다.</p>
+<p><strong>위젯 추가 방법</strong>:
+- 왼쪽 패널에서 <strong>Text Mining</strong> 카테고리를 찾습니다.
+- <strong>Corpus</strong> 위젯을 캔버스로 드래그합니다.</p>
+<p><strong>Corpus 위젯 설정</strong>:
+- Corpus 위젯을 더블클릭합니다.
+- 상단의 폴더 아이콘(📁)을 클릭해서 준비한 <code>news_sample.txt</code> 파일을 불러옵니다.
+- 파일이 로드되면 하단에 문서 수와 내용이 표시됩니다.</p>
+<blockquote>
+<p>💡 <strong>알아보기</strong>: Corpus란?
+Corpus(코퍼스)는 '말뭉치'라는 뜻으로, 분석할 텍스트 문서들의 모음입니다. 오렌지3에서는 텍스트 분석의 시작점이 항상 Corpus 위젯입니다.</p>
+</blockquote>
+<hr />
+<h3 id="step-3-preprocess-text">Step 3: Preprocess Text 위젯으로 전처리하기<a class="headerlink" href="#step-3-preprocess-text" title="Permanent link">&para;</a></h3>
+<p><strong>위젯 추가 및 연결</strong>:
+- Text Mining 카테고리에서 <strong>Preprocess Text</strong> 위젯을 캔버스로 드래그합니다.
+- Corpus 위젯의 출력 포트(오른쪽 점)를 Preprocess Text 위젯의 입력 포트(왼쪽 점)로 드래그하여 연결합니다.</p>
+<p><strong>Preprocess Text 위젯 설정</strong>:
+Preprocess Text를 더블클릭하면 여러 전처리 옵션이 나타납니다.</p>
+<ul>
+<li><strong>Transformation</strong> 탭: <code>Lowercase</code> 체크 → 모든 글자를 소문자로 변환</li>
+<li><strong>Tokenization</strong> 탭: <code>Word &amp; Punctuation</code> 선택 → 단어 단위로 토큰화</li>
+<li><strong>Normalization</strong> 탭: (한국어의 경우 기본값 유지)</li>
+<li><strong>Filtering</strong> 탭: <code>Stop words</code> 체크 → 기본 불용어 제거, <code>Min frequency: 1</code> 설정</li>
+</ul>
+<div class="mermaid">graph LR
+    A["Corpus\n텍스트 입력"] --&gt;|"연결"| B["Preprocess Text\n전처리"]
+    B --&gt;|"연결"| C["Word Cloud\n시각화"]
+
+    style A fill:#FFD700
+    style B fill:#98FB98
+    style C fill:#87CEEB</div>
+<hr />
+<h3 id="step-4-word-cloud">Step 4: Word Cloud 위젯 연결하기<a class="headerlink" href="#step-4-word-cloud" title="Permanent link">&para;</a></h3>
+<p><strong>위젯 추가 및 연결</strong>:
+- Text Mining 카테고리에서 <strong>Word Cloud</strong> 위젯을 캔버스로 드래그합니다.
+- Preprocess Text의 출력 포트를 Word Cloud의 입력 포트에 연결합니다.</p>
+<p><strong>Word Cloud 위젯 더블클릭</strong> → 결과 확인</p>
+<p>화면에 워드클라우드가 나타납니다! '인공지능'이라는 단어가 가장 크게 표시될 것입니다. 텍스트에서 가장 많이 등장한 단어이기 때문입니다.</p>
+<hr />
+<h3 id="step-5">Step 5: 결과 해석하기<a class="headerlink" href="#step-5" title="Permanent link">&para;</a></h3>
+<p>워드클라우드를 보면서 다음을 확인해봅니다.</p>
+<p><strong>크기로 보는 중요도</strong>:
+- 가장 크게 표시된 단어 = 가장 자주 등장한 단어 = 핵심 주제
+- 작게 표시된 단어 = 드물게 등장한 단어 = 부수적 내용</p>
+<p><strong>우리 예시에서 예상 결과</strong>:
+- <strong>인공지능</strong> → 가장 크게 (6회 등장)
+- <strong>기술, 서비스, 분야</strong> → 중간 크기
+- <strong>의료, 교육, 금융</strong> → 작은 크기</p>
+<blockquote>
+<p>🤔 <strong>생각해보기</strong>: 만약 '있다', '이다', '되다' 같은 단어가 크게 나타난다면 어떻게 해야 할까요? 이런 단어들은 불용어로 추가 등록해야 합니다. Preprocess Text의 Filtering 탭에서 불용어를 직접 추가할 수 있습니다.</p>
+</blockquote>
+<hr />
+<h3 id="step-6">Step 6: 불용어 커스터마이징<a class="headerlink" href="#step-6" title="Permanent link">&para;</a></h3>
+<p>분석 결과에서 의미 없는 단어가 보인다면 직접 불용어를 추가할 수 있습니다.</p>
+<ul>
+<li>Preprocess Text 위젯을 더블클릭합니다.</li>
+<li>Filtering 탭 → Stop words 옆의 편집 버튼 클릭</li>
+<li>직접 단어를 입력합니다. (예: 있다, 이다, 하다, 것이다)</li>
+<li>저장 후 Word Cloud가 자동으로 업데이트됩니다.</li>
+</ul>
+<blockquote>
+<p>📝 <strong>정리하기</strong>: 오렌지3 텍스트 분석 3단계
+1. <strong>Corpus</strong> → 텍스트 파일 불러오기
+2. <strong>Preprocess Text</strong> → 토큰화 + 불용어 제거
+3. <strong>Word Cloud</strong> → 결과 시각화</p>
+</blockquote>
+<hr />
+<h2 id="_4">📝 파이썬 코드로 보는 텍스트 분석<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>오렌지3로 클릭만으로 분석했다면, 같은 작업을 파이썬 코드로도 할 수 있습니다. 코드의 전체 흐름을 이해하는 것이 목표입니다. (직접 실행해보는 것은 선택 사항입니다)</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 필요한 라이브러리 불러오기</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">from</span> <span class="nn">konlpy.tag</span> <span class="kn">import</span> <span class="n">Okt</span>          <span class="c1"># 한국어 형태소 분석기</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>      <span class="c1"># 단어 빈도 계산</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kn">from</span> <span class="nn">wordcloud</span> <span class="kn">import</span> <span class="n">WordCloud</span>      <span class="c1"># 워드클라우드 생성</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>      <span class="c1"># 그래프 출력</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># 1단계: 분석할 텍스트 준비</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="s2">인공지능 기술이 빠르게 발전하고 있다. 딥러닝과 머신러닝을 활용한 인공지능 </span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="s2">서비스가 의료, 교육, 금융 분야에서 활발히 사용되고 있다. 인공지능 챗봇은 </span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="s2">고객 서비스 분야에서 혁신을 이끌고 있다.</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="c1"># 2단계: 형태소 분석 (토큰화)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">okt</span> <span class="o">=</span> <span class="n">Okt</span><span class="p">()</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="n">tokens</span> <span class="o">=</span> <span class="n">okt</span><span class="o">.</span><span class="n">nouns</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>   <span class="c1"># 명사만 추출</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;추출된 명사:&quot;</span><span class="p">,</span> <span class="n">tokens</span><span class="p">[:</span><span class="mi">10</span><span class="p">])</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="c1"># 3단계: 불용어 제거</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="n">stopwords</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;것&quot;</span><span class="p">,</span> <span class="s2">&quot;수&quot;</span><span class="p">,</span> <span class="s2">&quot;등&quot;</span><span class="p">,</span> <span class="s2">&quot;때&quot;</span><span class="p">,</span> <span class="s2">&quot;및&quot;</span><span class="p">]</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">tokens</span> <span class="k">if</span> <span class="n">t</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">stopwords</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="c1"># 4단계: 단어 빈도 계산</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="n">word_freq</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">tokens</span><span class="p">)</span>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;상위 5개 단어:&quot;</span><span class="p">,</span> <span class="n">word_freq</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="c1"># 5단계: 워드클라우드 생성</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="n">wc</span> <span class="o">=</span> <span class="n">WordCloud</span><span class="p">(</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>    <span class="n">font_path</span><span class="o">=</span><span class="s2">&quot;malgun.ttf&quot;</span><span class="p">,</span>    <span class="c1"># 한글 폰트 설정</span>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    <span class="n">width</span><span class="o">=</span><span class="mi">800</span><span class="p">,</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>    <span class="n">background_color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="p">)</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="n">wc</span><span class="o">.</span><span class="n">generate_from_frequencies</span><span class="p">(</span><span class="n">word_freq</span><span class="p">)</span>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="c1"># 6단계: 화면에 출력</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">wc</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="s2">&quot;bilinear&quot;</span><span class="p">)</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;뉴스 기사 워드클라우드&quot;</span><span class="p">)</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</span></code></pre></div>
+<p><strong>코드 흐름 한눈에 보기</strong>:</p>
+<div class="mermaid">graph TD
+    A["텍스트 준비"] --&gt; B["okt.nouns()\n명사 추출 = 토큰화"]
+    B --&gt; C["stopwords 필터링\n불용어 제거"]
+    C --&gt; D["Counter()\n단어 빈도 계산"]
+    D --&gt; E["WordCloud()\n워드클라우드 생성"]
+    E --&gt; F["plt.imshow()\n화면 출력"]
+
+    style A fill:#FFE4B5
+    style B fill:#98FB98
+    style C fill:#98FB98
+    style D fill:#87CEEB
+    style E fill:#DDA0DD
+    style F fill:#F0E68C</div>
+<blockquote>
+<p>💡 <strong>알아보기</strong>: KoNLPy란?
+KoNLPy(코엔엘파이)는 한국어 자연어 처리를 위한 파이썬 라이브러리입니다. 내부에 여러 형태소 분석기(Okt, Kkma, Komoran 등)가 있으며, <code>okt.nouns()</code>는 문장에서 명사만 뽑아줍니다. 명사는 의미를 담은 핵심 단어이기 때문에 텍스트 분석에 가장 많이 사용됩니다.</p>
+</blockquote>
+<hr />
+<h2 id="_5">⚠️ 자주 하는 실수<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><strong>실수 1: 불용어를 제거하지 않고 워드클라우드 생성</strong></p>
+<p>"은", "는", "이", "가", "을", "를" 같은 조사가 가장 크게 표시되는 결과가 나옵니다. 이 단어들은 어떤 텍스트에나 많이 나오기 때문에 전혀 의미 있는 정보를 주지 않습니다. <strong>반드시 불용어 제거 단계를 포함하세요.</strong></p>
+<p><strong>실수 2: 파일 인코딩 오류</strong></p>
+<p>텍스트 파일을 EUC-KR 인코딩으로 저장했는데 UTF-8로 불러오면 오류가 발생합니다. 한국어 텍스트 파일은 항상 <strong>UTF-8 인코딩</strong>으로 저장하는 습관을 들이세요. 메모장 저장 시 인코딩 선택창에서 UTF-8을 선택합니다.</p>
+<p><strong>실수 3: 너무 짧은 텍스트로 분석</strong></p>
+<p>텍스트가 두세 문장 수준이면 워드클라우드가 의미 없게 나옵니다. 의미 있는 분석을 위해서는 <strong>최소 100단어 이상</strong>, 가능하면 300단어 이상의 텍스트를 사용하세요.</p>
+<p><strong>실수 4: 오렌지3 위젯 연결 방향 혼동</strong></p>
+<p>위젯의 <strong>왼쪽 포트는 입력(Input)</strong>, <strong>오른쪽 포트는 출력(Output)</strong> 입니다. Corpus(출력) → Preprocess Text(입력) → Word Cloud(입력) 순서로 연결해야 합니다. 반대로 연결하면 데이터가 흐르지 않습니다.</p>
+<hr />
+<h2 id="_6">✅ 스스로 점검하기<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>아래 질문에 답해보세요. 모두 답할 수 있으면 이 장을 완벽히 이해한 것입니다!</p>
+<p><strong>기본 문제</strong></p>
+<ol>
+<li>
+<p>텍스트 데이터와 숫자 데이터의 가장 큰 차이점은 무엇인가요?</p>
+</li>
+<li>
+<p>다음 문장을 단어 토큰화하면 어떻게 되나요?
+   "오늘은 맑은 하늘 아래 산책을 했다"</p>
+</li>
+<li>
+<p>아래 단어 목록에서 불용어를 골라보세요.
+   <code>["학교", "는", "정말", "좋다", "를", "친구", "와"]</code></p>
+</li>
+<li>
+<p>워드클라우드에서 단어의 크기는 무엇을 의미하나요?</p>
+</li>
+</ol>
+<p><strong>응용 문제</strong></p>
+<ol>
+<li>
+<p>오렌지3에서 텍스트 분석을 위한 위젯 연결 순서를 빈칸에 써넣으세요.
+   <code>(      )</code> → <code>Preprocess Text</code> → <code>(      )</code></p>
+</li>
+<li>
+<p>뉴스 기사를 분석했더니 워드클라우드에 "있다", "된다", "한다"가 가장 크게 나왔습니다. 어떻게 해결해야 할까요?</p>
+</li>
+</ol>
+<p><strong>심화 문제</strong></p>
+<ol>
+<li>같은 텍스트를 분석하더라도 불용어 목록에 따라 워드클라우드 결과가 달라집니다. 이것이 분석에서 어떤 의미를 가질까요? 분석자의 역할에 대해 생각해보세요.</li>
+</ol>
+<blockquote>
+<p>📝 <strong>정답 확인</strong>
+1. 텍스트는 비정형 데이터로 바로 계산할 수 없으며 전처리가 필요합니다.
+2. ["오늘은", "맑은", "하늘", "아래", "산책을", "했다"]
+3. "는", "를", "와"
+4. 해당 단어의 등장 빈도(자주 나올수록 크게 표시)
+5. Corpus → Word Cloud
+6. "있다", "된다", "한다"를 불용어 목록에 추가하여 제거합니다.</p>
+</blockquote>
+<hr />
+<h2 id="-">🚀 더 해보기 - 도전 문제<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p><strong>도전: 뉴스 기사 워드클라우드 만들고 핵심 주제 추론하기</strong></p>
+<ol>
+<li>포털 사이트(네이버, 다음 등)에서 관심 있는 뉴스 기사 하나를 선택합니다.</li>
+<li>기사 본문 전체를 복사해서 텍스트 파일로 저장합니다.</li>
+<li>오렌지3에서 워드클라우드를 만들어봅니다.</li>
+<li>결과를 보고 아래 질문에 답해보세요.</li>
+<li>가장 크게 나온 단어 TOP 5는?</li>
+<li>이 단어들을 보고 기사의 핵심 주제를 한 문장으로 요약하면?</li>
+<li>워드클라우드만 봐도 기사 제목을 유추할 수 있나요?</li>
+</ol>
+<p><strong>추가 아이디어</strong>:
+- 좋아하는 노래 가사 전체를 분석해보세요
+- 소설 첫 번째 챕터를 분석해서 주인공과 배경을 유추해보세요
+- 친구들의 SNS 게시물을 모아 분석하면 어떤</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  맨위로
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+      
+        <script src="../javascripts/title-link.js"></script>
+      
+    
+  </body>
+</html>
