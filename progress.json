@@ -4,78 +4,6 @@
   "step2_completed": true,
   "step3_confirmed": true,
   "chapters": {
-    "chapter01": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.507Z"
-    },
-    "chapter02": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.513Z"
-    },
-    "chapter03": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.518Z"
-    },
-    "chapter04": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.523Z"
-    },
-    "chapter05": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.528Z"
-    },
-    "chapter06": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.534Z"
-    },
-    "chapter07": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.541Z"
-    },
-    "chapter08": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.547Z"
-    },
-    "chapter09": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.552Z"
-    },
-    "chapter10": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.558Z"
-    },
-    "chapter11": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.564Z"
-    },
-    "chapter12": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.570Z"
-    },
-    "chapter13": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.577Z"
-    },
-    "chapter14": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.583Z"
-    },
-    "chapter15": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.589Z"
-    },
-    "chapter16": {
-      "status": "completed",
-      "completed_at": "2026-03-02T10:12:28.594Z"
-    },
-    "chapter17": {
-      "status": "completed",
-      "completed_at": "2026-02-28T15:41:54.814Z"
-    },
-    "chapter18": {
-      "status": "completed",
-      "completed_at": "2026-02-28T15:41:54.819Z"
-    },
     "1-1": {
       "status": "completed",
       "completed_at": "2026-02-28T15:47:19.257Z"
@@ -141,7 +69,7 @@
       "completed_at": "2026-02-28T15:47:19.331Z"
     }
   },
-  "last_updated": "2026-03-02T10:12:28.594Z",
+  "last_updated": "2026-03-02T14:24:42.012Z",
   "step1_completed_at": "2026-03-02T09:52:47.176Z",
   "step2_completed_at": "2026-03-02T09:55:13.009Z",
   "step3_confirmed_at": "2026-02-28T15:20:25.689Z"
